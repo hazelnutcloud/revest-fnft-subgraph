@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: Revest
@@ -17,8 +17,9 @@ dataSources:
         - FNFTAddressLockMinted
       abis:
         - name: Revest
-          file: ./abis/Revest.json
+          file: Revest/abis/Revest.json
       eventHandlers:
-        - event: FNFTAddressLockMinted(indexed address,indexed address,indexed uint256,address,uint256[],(address,address,uint256,uint256,uint256,uint256,bool,bool,bool))
+        - event: FNFTAddressLockMinted(indexed address,indexed address,indexed
+            uint256,address,uint256[],(address,address,uint256,uint256,uint256,uint256,bool,bool,bool))
           handler: handleFNFTAddressLockMinted
-      file: ./src/mapping.ts
+      file: Revest/Revest.wasm
