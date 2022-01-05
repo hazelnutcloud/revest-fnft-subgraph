@@ -1,0 +1,56 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Revest
+    network: fantom
+    source:
+      address: "0x951e7c0A50b70Cd7bB5C244A9bD7aF76e563485F"
+      abi: Revest
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - FNFTAddionalDeposited
+        - FNFTAddressLockMinted
+        - FNFTMaturityExtended
+        - FNFTSplit
+        - FNFTTimeLockMinted
+        - FNFTUnlocked
+        - FNFTValueLockMinted
+        - FNFTWithdrawn
+        - OwnershipTransferred
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+      abis:
+        - name: Revest
+          file: ./abis/Revest.json
+      eventHandlers:
+        - event: FNFTAddionalDeposited(indexed address,indexed uint256,indexed uint256,uint256)
+          handler: handleFNFTAddionalDeposited
+        - event: FNFTAddressLockMinted(indexed address,indexed address,indexed uint256,address,uint256[],(address,address,uint256,uint256,uint256,uint256,bool,bool,bool))
+          handler: handleFNFTAddressLockMinted
+        - event: FNFTMaturityExtended(indexed address,indexed uint256,indexed uint256)
+          handler: handleFNFTMaturityExtended
+        - event: FNFTSplit(indexed address,indexed uint256[],indexed uint256[],uint256)
+          handler: handleFNFTSplit
+        - event: FNFTTimeLockMinted(indexed address,indexed address,indexed uint256,uint256,uint256[],(address,address,uint256,uint256,uint256,uint256,bool,bool,bool))
+          handler: handleFNFTTimeLockMinted
+        - event: FNFTUnlocked(indexed address,indexed uint256)
+          handler: handleFNFTUnlocked
+        - event: FNFTValueLockMinted(indexed address,indexed address,indexed uint256,address,address,uint256[],(address,address,uint256,uint256,uint256,uint256,bool,bool,bool))
+          handler: handleFNFTValueLockMinted
+        - event: FNFTWithdrawn(indexed address,indexed uint256,indexed uint256)
+          handler: handleFNFTWithdrawn
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+      file: ./src/mapping.ts

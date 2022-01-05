@@ -1,0 +1,16 @@
+{
+  "name": "revest-fantom",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ hazelnutcloud/revest-fantom",
+    "create-local": "graph create --node http://localhost:8020/ hazelnutcloud/revest-fantom",
+    "remove-local": "graph remove --node http://localhost:8020/ hazelnutcloud/revest-fantom",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 hazelnutcloud/revest-fantom"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.25.1",
+    "@graphprotocol/graph-ts": "0.24.1"
+  }
+}
