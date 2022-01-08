@@ -31,6 +31,7 @@ export function updateFNFTBalance(fnftID: BigInt, owner: Address, quantity: BigI
   if (!supply) {
     const fnft = loadOrCreateFNFT(fnftID.toString())
     fnft.active = false
+    fnft.save()
   }
 
   _owner.save()
