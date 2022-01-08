@@ -8,6 +8,7 @@ export function loadOrCreateFNFT(id: string): FNFT {
     fnft.active = true
     fnft.isSplit = false
     fnft.isAdditionalDeposit = false
+    fnft.unlockRisingEdge = false //boolean fields cannot be null for some reason
   }
   return fnft
 }
