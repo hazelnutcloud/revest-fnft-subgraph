@@ -1,7 +1,22 @@
-type AddressLockFNFT @entity {
+type FNFT @entity {
   id: ID!
   minter: String!
-  trigger: String!
+  type: String!
+  endTime: BigInt
+  primaryAsset: String
+  compareTo: String
+  unlockValue: BigInt
+  unlockRisingEdge: Boolean
+  oracleDispatch: String
+  trigger: String
+  arguments: Bytes
+  owners: [FNFTBalance!]! @derivedFrom(field: "fnft")
+  mintTimestamp: BigInt!
+  isSplit: Boolean!
+  splitFrom: FNFTSplit
+  isAdditionalDeposit: Boolean!
+  additionalDepositFrom: FNFTAdditionalDeposit
+  active: Boolean!
   asset: String!
   pipeToContract: String!
   depositAmount: BigInt!
@@ -12,4 +27,48 @@ type AddressLockFNFT @entity {
   isMulti: Boolean!
   nontransferrable: Boolean!
 }
- 
+
+type Owner @entity {
+  id: ID!
+  fnfts: [FNFTBalance!]! @derivedFrom(field: "owner")
+}
+
+type FNFTTransfer @entity {
+  id: ID!
+  from: Owner!
+  to: Owner!
+  fnft: FNFT!
+  amount: BigInt!
+  timestamp: BigInt!
+}
+
+type FNFTWithdraw @entity {
+  id: ID!
+  fnft: FNFT!
+  withdrawer: Owner!
+  quantity: BigInt!
+  timestamp: BigInt!
+}
+
+type FNFTBalance @entity {
+  id: ID!
+  fnft: FNFT!
+  owner: Owner!
+  balance: BigInt!
+  lastChange: BigInt!
+}
+
+type FNFTSplit @entity {
+  id: ID!
+  fnft: FNFT!
+  splitter: Owner!
+  quantity: BigInt!
+}
+
+type FNFTAdditionalDeposit @entity {
+  id: ID!
+  fnft: FNFT!
+  depositor: String!
+  quantity: BigInt!
+  amount: BigInt!
+}

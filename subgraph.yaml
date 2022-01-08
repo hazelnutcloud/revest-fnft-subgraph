@@ -14,11 +14,53 @@ dataSources:
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - FNFTAddressLockMinted
+        - MintAddressLockCall
+        - FNFTWithdrawn
+        - FNFTHandler
+        - FNFTSplit
+        - TokenVault
       abis:
         - name: Revest
           file: ./abis/Revest.json
+        - name: TokenVault
+          file: ./abis/TokenVault.json
+        - name: FNFTHandler
+          file: ./abis/FNFTHandler.json
+      callHandlers:
+        - function: mintTimeLock(uint256,address[],uint256[],(address,address,uint256,uint256,uint256,uint256,bool,bool,bool))
+          handler: handleMintTimeLock
+        - function: mintValueLock(address,address,uint256,bool,address,address[],uint256[],(address,address,uint256,uint256,uint256,uint256,bool,bool,bool))
+          handler: handleMintValueLock          
+        - function: mintAddressLock(address,bytes,address[],uint256[],(address,address,uint256,uint256,uint256,uint256,bool,bool,bool))
+          handler: handleMintAddressLock
+        - function: splitFNFT(uint256,uint256[],uint256)
+          handler: handleSplitFNFT
+        - function: depositAdditionalToFNFT(uint256,uint256,uint256)
+          handler: handleDepositAdditionalToNFT
       eventHandlers:
-        - event: FNFTAddressLockMinted(indexed address,indexed address,indexed uint256,address,uint256[],(address,address,uint256,uint256,uint256,uint256,bool,bool,bool))
-          handler: handleFNFTAddressLockMinted
-      file: ./src/mapping.ts
+        - event: FNFTWithdrawn(indexed address,indexed uint256,indexed uint256)
+          handler: handleFNFTWithdrawn
+      file: ./src/Revest.ts
+  - kind: ethereum
+    name: FNFTHandler
+    network: fantom
+    source:
+      address: "0x58a57754e8D8693703E51604696Bd065f25333FD"
+      abi: FNFTHandler
+      startBlock: 22918392
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - SafeTransferFromCall
+        - SafeBatchTransferFromCall
+      abis:
+        - name: FNFTHandler
+          file: ./abis/FNFTHandler.json
+      callHandlers:
+        - function: safeTransferFrom(address,address,uint256,uint256,bytes)
+          handler: handleSafeTransferFrom
+        - function: safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)
+          handler: handleSafeBatchTransferFrom          
+      file: ./src/FNFTHandler.ts
