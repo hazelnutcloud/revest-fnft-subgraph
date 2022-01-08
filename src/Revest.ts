@@ -7,6 +7,7 @@ import {
   SplitFNFTCall,
 } from "../generated/Revest/Revest"
 import { loadOrCreateFNFT, updateAddressLockFNFT, updateTimeLockFNFT, updateValueLockFNFT } from "./utils/FNFT"
+import { depositAdditionalFNFT } from "./utils/FNFTAdditionalDeposit"
 import { updateFNFTBalance } from "./utils/FNFTBalance"
 import { splitFNFT } from "./utils/FNFTSplit"
 import { withdrawFNFT } from "./utils/FNFTWithdraw"
@@ -50,5 +51,5 @@ export function handlesplitFNFT(call: SplitFNFTCall): void {
 }
 
 export function handleDepositAdditionalToFNFT(call: DepositAdditionalToFNFTCall):void {
-
+  depositAdditionalFNFT(call)
 }

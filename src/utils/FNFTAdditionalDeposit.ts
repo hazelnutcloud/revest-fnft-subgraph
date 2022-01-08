@@ -32,5 +32,6 @@ export function depositAdditionalFNFT(call: DepositAdditionalToFNFTCall):void {
     newFNFT.isAdditionalDeposit = true
     newFNFT.additionalDepositFrom = call.transaction.hash.toHexString()
     newFNFT.depositAmount = newFNFT.depositAmount.plus(call.inputs.amount)
+    newFNFT.save()
   }
 }

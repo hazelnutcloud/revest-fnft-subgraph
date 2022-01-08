@@ -36,7 +36,7 @@ dataSources:
         - function: splitFNFT(uint256,uint256[],uint256)
           handler: handleSplitFNFT
         - function: depositAdditionalToFNFT(uint256,uint256,uint256)
-          handler: handleDepositAdditionalToNFT
+          handler: handleDepositAdditionalToFNFT
       eventHandlers:
         - event: FNFTWithdrawn(indexed address,indexed uint256,indexed uint256)
           handler: handleFNFTWithdrawn
