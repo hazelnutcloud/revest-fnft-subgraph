@@ -23,9 +23,9 @@ type FNFT @entity {
   depositMul: BigInt!
   split: BigInt!
   depositStopTime: BigInt!
-  maturityExtension: Boolean!
-  isMulti: Boolean!
-  nontransferrable: Boolean!
+  maturityExtension: Boolean
+  isMulti: Boolean
+  nontransferrable: Boolean
 }
 
 type Owner @entity {
