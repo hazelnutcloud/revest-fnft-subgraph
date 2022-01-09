@@ -16,7 +16,7 @@ type FNFT @entity {
   splitFrom: FNFTSplit
   isAdditionalDeposit: Boolean!
   additionalDepositFrom: FNFTAdditionalDeposit
-  active: Boolean!
+  totalSupply: BigInt!
   asset: String!
   pipeToContract: String!
   depositAmount: BigInt!

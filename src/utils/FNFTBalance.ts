@@ -28,11 +28,9 @@ export function updateFNFTBalance(fnftID: BigInt, owner: Address, quantity: BigI
 
   const fnftHandlerContract = FNFTHandler.bind(Address.fromString(FNFTHANDLER_ADDRESS))
   const supply = fnftHandlerContract.getSupply(fnftID)
-  if (!supply) {
-    const fnft = loadOrCreateFNFT(fnftID.toString())
-    fnft.active = false
-    fnft.save()
-  }
+  const fnft = loadOrCreateFNFT(fnftID.toString())
+  fnft.totalSupply = supply
+  fnft.save()
 
   _owner.save()
   fnftBalance.save()

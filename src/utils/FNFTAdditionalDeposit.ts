@@ -25,13 +25,13 @@ export function depositAdditionalFNFT(call: DepositAdditionalToFNFTCall):void {
     fnft.depositAmount = fnft.depositAmount.plus(call.inputs.amount)
     fnft.save()
   } else {
-    updateFNFTBalance(call.inputs.fnftId, call.from, call.inputs.quantity, call.block.timestamp, false)
-    updateFNFTBalance(call.outputs.value0, call.from, call.inputs.quantity, call.block.timestamp)
     const oldFnft = loadOrCreateFNFT(call.inputs.fnftId.toString())
     const newFNFT = copyFNFTFields(loadOrCreateFNFT(call.outputs.value0.toString()), oldFnft)
     newFNFT.isAdditionalDeposit = true
     newFNFT.additionalDepositFrom = call.transaction.hash.toHexString()
     newFNFT.depositAmount = newFNFT.depositAmount.plus(call.inputs.amount)
     newFNFT.save()
+    updateFNFTBalance(call.inputs.fnftId, call.from, call.inputs.quantity, call.block.timestamp, false)
+    updateFNFTBalance(call.outputs.value0, call.from, call.inputs.quantity, call.block.timestamp)
   }
 }

@@ -19,6 +19,7 @@ export class FNFT extends Entity {
     this.set("minter", Value.fromString(""));
     this.set("type", Value.fromString(""));
     this.set("mintTimestamp", Value.fromBigInt(BigInt.zero()));
+    this.set("totalSupply", Value.fromBigInt(BigInt.zero()));
     this.set("asset", Value.fromString(""));
     this.set("pipeToContract", Value.fromString(""));
     this.set("depositAmount", Value.fromBigInt(BigInt.zero()));
@@ -269,13 +270,13 @@ export class FNFT extends Entity {
     }
   }
 
-  get active(): boolean {
-    let value = this.get("active");
-    return value!.toBoolean();
+  get totalSupply(): BigInt {
+    let value = this.get("totalSupply");
+    return value!.toBigInt();
   }
 
-  set active(value: boolean) {
-    this.set("active", Value.fromBoolean(value));
+  set totalSupply(value: BigInt) {
+    this.set("totalSupply", Value.fromBigInt(value));
   }
 
   get asset(): string {

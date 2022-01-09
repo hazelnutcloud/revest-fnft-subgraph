@@ -31,7 +31,6 @@ export function splitFNFT(call: SplitFNFTCall):void {
     newFNFT.mintTimestamp = call.block.timestamp
     newFNFT.isSplit = true
     newFNFT.splitFrom = call.transaction.hash.toHexString()
-    newFNFT.active = true
     newFNFT.depositAmount = newFNFTConfig.depositAmount
     newFNFT.split = newFNFTConfig.split
     newFNFT.save()

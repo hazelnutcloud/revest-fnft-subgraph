@@ -5,7 +5,6 @@ export function loadOrCreateFNFT(id: string): FNFT {
   let fnft = FNFT.load(id)
   if (!fnft) {
     fnft = new FNFT(id)
-    fnft.active = true
     fnft.isSplit = false
     fnft.isAdditionalDeposit = false
     fnft.unlockRisingEdge = false //boolean fields cannot be null for some reason
@@ -27,7 +26,7 @@ export function copyFNFTFields(newFNFT: FNFT, oldFNFT: FNFT):FNFT {
   newFNFT.mintTimestamp = oldFNFT.mintTimestamp
   newFNFT.isSplit = oldFNFT.isSplit
   newFNFT.splitFrom = oldFNFT.splitFrom
-  newFNFT.active = oldFNFT.active
+  newFNFT.totalSupply = oldFNFT.totalSupply
   newFNFT.asset = oldFNFT.asset
   newFNFT.pipeToContract = oldFNFT.pipeToContract
   newFNFT.depositAmount = oldFNFT.depositAmount
