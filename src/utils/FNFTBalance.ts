@@ -14,24 +14,20 @@ export function loadOrCreateFNFTBalance (id: string): FNFTBalance {
   return fnftBalance
 }
 
-export function updateFNFTBalance(fnftID: BigInt, owner: Address, quantity: BigInt, lastChange: BigInt, add: boolean = true): void {
+export function updateFNFTBalance(fnftID: BigInt, owner: Address, lastChange: BigInt): void {
   const _owner = loadOrCreateOwner(owner.toHexString())
   const fnftBalance = loadOrCreateFNFTBalance(`${fnftID}-${owner.toHexString()}`)
   fnftBalance.fnft = fnftID.toString()
   fnftBalance.owner = owner.toHexString()
-  if (add) {
-    fnftBalance.balance = fnftBalance.balance.plus(quantity)
-  } else {
-    fnftBalance.balance = fnftBalance.balance.minus(quantity)
-  }
   fnftBalance.lastChange = lastChange
-
   const fnftHandlerContract = FNFTHandler.bind(Address.fromString(FNFTHANDLER_ADDRESS))
+  const balance = fnftHandlerContract.getBalance(owner, fnftID)
+  fnftBalance.balance = balance
   const supply = fnftHandlerContract.getSupply(fnftID)
   const fnft = loadOrCreateFNFT(fnftID.toString())
   fnft.totalSupply = supply
+  
   fnft.save()
-
   _owner.save()
   fnftBalance.save()
 }

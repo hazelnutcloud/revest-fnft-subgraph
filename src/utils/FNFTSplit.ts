@@ -35,7 +35,7 @@ export function splitFNFT(call: SplitFNFTCall):void {
     newFNFT.split = newFNFTConfig.split
     newFNFT.save()
     
-    updateFNFTBalance(newFNFTIds[i], call.from, call.inputs.quantity, call.block.timestamp)
+    updateFNFTBalance(newFNFTIds[i], call.from, call.block.timestamp)
   }
-  updateFNFTBalance(call.inputs.fnftId, call.from, call.inputs.quantity, call.block.timestamp, false)
+  updateFNFTBalance(call.inputs.fnftId, call.from, call.block.timestamp)
 }

@@ -18,7 +18,7 @@ export function handleMintTimeLock(call: MintTimeLockCall): void {
   updateTimeLockFNFT(fnft, call)
   const recipients = call.inputs.recipients
   for (let i=0; i<recipients.length; i++) {
-    updateFNFTBalance(fnftID, recipients[i], call.inputs.quantities[i], call.block.timestamp)
+    updateFNFTBalance(fnftID, recipients[i], call.block.timestamp)
   }
 }
 
@@ -28,7 +28,7 @@ export function handleMintValueLock(call: MintValueLockCall): void {
   updateValueLockFNFT(fnft, call)
   const recipients = call.inputs.recipients
   for (let i=0; i<recipients.length; i++) {
-    updateFNFTBalance(fnftID, recipients[i], call.inputs.quantities[i], call.block.timestamp)
+    updateFNFTBalance(fnftID, recipients[i], call.block.timestamp)
   }
 }
 
@@ -38,7 +38,7 @@ export function handleMintAddressLock(call: MintAddressLockCall): void {
   updateAddressLockFNFT(fnft, call)
   const recipients = call.inputs.recipients
   for (let i=0; i<recipients.length; i++) {
-    updateFNFTBalance(fnftID, recipients[i], call.inputs.quantities[i], call.block.timestamp)
+    updateFNFTBalance(fnftID, recipients[i], call.block.timestamp)
   }
 }
 

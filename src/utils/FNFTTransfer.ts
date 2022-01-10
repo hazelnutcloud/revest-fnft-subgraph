@@ -21,6 +21,6 @@ export function updateFNFTTransfer(transfer: FNFTTransfer, from: Address, to: Ad
 
 export function transferFNFT(transfer: FNFTTransfer, fnftid: BigInt, from: Address, to: Address, amount: BigInt, timestamp: BigInt):void {
   updateFNFTTransfer(transfer, from, to, fnftid, amount, timestamp)
-  updateFNFTBalance(fnftid, from, amount, timestamp, false)
-  updateFNFTBalance(fnftid, to, amount, timestamp)
+  updateFNFTBalance(fnftid, from, timestamp)
+  updateFNFTBalance(fnftid, to, timestamp)
 }

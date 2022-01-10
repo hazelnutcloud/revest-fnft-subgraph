@@ -4,7 +4,7 @@ import { updateFNFTBalance } from "./FNFTBalance";
 
 export function withdrawFNFT(event: FNFTWithdrawn):void {
   updateFNFTWithdraw(event)
-  updateFNFTBalance(event.params.fnftId, event.params.from, event.params.quantity, event.block.timestamp, false)
+  updateFNFTBalance(event.params.fnftId, event.params.from, event.block.timestamp)
 }
 
 export function updateFNFTWithdraw(event: FNFTWithdrawn):void {
