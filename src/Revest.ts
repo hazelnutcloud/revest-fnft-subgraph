@@ -46,7 +46,7 @@ export function handleFNFTWithdrawn(event: FNFTWithdrawn): void {
   withdrawFNFT(event)
 }
 
-export function handlesplitFNFT(call: SplitFNFTCall): void {
+export function handleSplitFNFT(call: SplitFNFTCall): void {
   splitFNFT(call)
 }
 
